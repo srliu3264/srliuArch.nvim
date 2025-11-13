@@ -205,6 +205,28 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 -- vim.keymap.set("n", "<C-S-j>", "<C-w>J", { desc = "Move window to the lower" })
 -- vim.keymap.set("n", "<C-S-k>", "<C-w>K", { desc = "Move window to the upper" })
 
+-- for ipynb
+
+vim.g.python3_host_prog = vim.fn.expand '~/.virtualenvs/nvim/bin/python3'
+
+-- I find auto open annoying, keep in mind setting this option will require setting
+-- a keybind for `:noautocmd MoltenEnterOutput` to open the output again
+vim.g.molten_auto_open_output = false
+
+-- this guide will be using image.nvim
+-- Don't forget to setup and install the plugin if you want to view image outputs
+vim.g.molten_image_provider = 'image.nvim'
+
+-- optional, I like wrapping. works for virt text and the output window
+vim.g.molten_wrap_output = true
+
+-- Output as virtual text. Allows outputs to always be shown, works with images, but can
+-- be buggy with longer images
+vim.g.molten_virt_text_output = true
+
+-- this will make it so the output shows up below the \`\`\` cell delimiter
+vim.g.molten_virt_lines_off_by_1 = true
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
@@ -218,6 +240,26 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     vim.hl.on_yank()
   end,
 })
+
+vim.g.python3_host_prog = vim.fn.expand '~/.virtualenvs/nvim/bin/python3'
+
+-- I find auto open annoying, keep in mind setting this option will require setting
+-- a keybind for `:noautocmd MoltenEnterOutput` to open the output again
+vim.g.molten_auto_open_output = false
+
+-- this guide will be using image.nvim
+-- Don't forget to setup and install the plugin if you want to view image outputs
+vim.g.molten_image_provider = 'image.nvim'
+
+-- optional, I like wrapping. works for virt text and the output window
+vim.g.molten_wrap_output = true
+
+-- Output as virtual text. Allows outputs to always be shown, works with images, but can
+-- be buggy with longer images
+vim.g.molten_virt_text_output = true
+
+-- this will make it so the output shows up below the \`\`\` cell delimiter
+vim.g.molten_virt_lines_off_by_1 = true
 
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
@@ -973,18 +1015,18 @@ require('lazy').setup({
   --  Here are some example plugins that I've included in the Kickstart repository.
   --  Uncomment any of the lines below to enable them (you will need to restart nvim).
   --
-  -- require 'kickstart.plugins.debug',
-  -- require 'kickstart.plugins.indent_line',
-  -- require 'kickstart.plugins.lint',
-  -- require 'kickstart.plugins.autopairs',
-  -- require 'kickstart.plugins.neo-tree',
-  -- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
+  require 'kickstart.plugins.debug',
+  require 'kickstart.plugins.indent_line',
+  require 'kickstart.plugins.lint',
+  require 'kickstart.plugins.autopairs',
+  require 'kickstart.plugins.neo-tree',
+  require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.
   --
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
-  -- { import = 'custom.plugins' },
+  { import = 'custom.plugins' },
   --
   -- For additional information with loading, sourcing and examples see `:help lazy.nvim-🔌-plugin-spec`
   -- Or use telescope!
