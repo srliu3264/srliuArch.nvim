@@ -1,5 +1,7 @@
--- NOTE: need to have a python virtual enviroment at ~/.virtualenvs/nvim
-
+-- WARN: MUST have a python virtual enviroment at ~/.virtualenvs/nvim
+-- TODO: config https://github.com/yetone/avante.nvim for AI IDE (copilot)
+--
+-- This configuration is started from kickstart.nvim
 --[[
 
 =====================================================================
@@ -1212,6 +1214,31 @@ require('lazy').setup({
     },
   },
 })
+-------------------------------------------------------------------
+-- Globally filter out pycodestyle E-codes in markdown/quarto
+-------------------------------------------------------------------
+local orig_diag_set = vim.diagnostic.set
+
+vim.diagnostic.set = function(namespace, bufnr, diagnostics, opts)
+  -- Only touch real buffers with diagnostics
+  if bufnr and diagnostics then
+    local ft = vim.bo[bufnr].filetype
+
+    -- Only filter in notebook-like buffers
+    if ft == 'markdown' or ft == 'quarto' then
+      local filtered = {}
+      for _, d in ipairs(diagnostics) do
+        -- Drop pycodestyle warnings like E303/E231/etc
+        if not (d.source == 'pycodestyle' and (d.code == 'E303' or d.code == 'E231' or tostring(d.code):match '^E%d%d%d$')) then
+          table.insert(filtered, d)
+        end
+      end
+      diagnostics = filtered
+    end
+  end
+
+  return orig_diag_set(namespace, bufnr, diagnostics, opts)
+end
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
