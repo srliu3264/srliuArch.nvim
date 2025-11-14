@@ -835,7 +835,8 @@ require('lazy').setup({
       --  When you add blink.cmp, luasnip, etc. Neovim now has *more* capabilities.
       --  So, we create new capabilities with blink.cmp, and then broadcast that to the servers.
       local capabilities = require('blink.cmp').get_lsp_capabilities()
-
+      -- NOTE: I added pylsp in the following table.
+      --
       -- Enable the following language servers
       --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
       --
@@ -873,6 +874,19 @@ require('lazy').setup({
             },
           },
         },
+        pylsp = {
+          settings = {
+            pylsp = {
+              plugins = {
+                pyflakes = { enabled = true },
+                pycodestyle = { enabled = false }, -- avoid spam
+                mccabe = { enabled = false },
+                rope_autoimport = { enabled = true },
+                jedi_completion = { enabled = true },
+              },
+            },
+          },
+        },
       }
 
       -- Ensure the servers and tools above are installed
@@ -891,6 +905,7 @@ require('lazy').setup({
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
+        'pylsp', -- for python
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
