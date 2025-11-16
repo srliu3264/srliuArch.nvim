@@ -1,3 +1,4 @@
+-- TODO: configure fastapply and keymaps etc., and buy GPT or Claude token to make it work.
 return {
   {
     'yetone/avante.nvim',
@@ -52,6 +53,10 @@ return {
         'HakonHarnes/img-clip.nvim',
         event = 'VeryLazy',
         opts = {
+          provider = 'gemini',
+          gemini = {
+            model = 'gemini-2.0-flash',
+          },
           -- recommended settings
           default = {
             embed_image_as_base64 = false,
