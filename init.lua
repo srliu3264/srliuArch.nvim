@@ -173,6 +173,11 @@ vim.o.confirm = true
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
+--NOTE: enable autosaver and persistent undo (by srliu)
+--
+require 'autosave'
+vim.opt.undofile = true
+vim.opt.undodir = os.getenv 'HOME' .. '/.config/nvim/undo'
 
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
