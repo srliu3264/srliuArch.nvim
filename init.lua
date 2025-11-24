@@ -215,8 +215,10 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 -- vim.keymap.set("n", "<C-S-j>", "<C-w>J", { desc = "Move window to the lower" })
 -- vim.keymap.set("n", "<C-S-k>", "<C-w>K", { desc = "Move window to the upper" })
 
--- NOTE: LATEX setups
+-- keybind vista to see TOC structure of current buffer
 vim.keymap.set('n', '<leader>tv', ':Vista!!<CR>')
+
+-- NOTE: LATEX setups
 
 -- NOTE: molten ipykernel setups:
 -- WARN: Make sure the virtual enviroment is created in the folder, and source.virtualenvs, and make sure pip install ipykernel, and register it python -m ipykernel install --user --name VENV_NAME
@@ -1254,5 +1256,18 @@ vim.diagnostic.set = function(namespace, bufnr, diagnostics, opts)
   return orig_diag_set(namespace, bufnr, diagnostics, opts)
 end
 
+-- Toggle Diagnostic Virtual Text (The "spam" next to code)
+vim.keymap.set('n', '<localleader>td', function()
+  local current_config = vim.diagnostic.config()
+  local new_state = not current_config.virtual_text
+  vim.diagnostic.config { virtual_text = new_state }
+
+  if new_state then
+    print 'Diagnostics: ON'
+  else
+    print 'Diagnostics: OFF'
+  end
+end, { desc = '[T]oggle [D]iagnostic text' })
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
+--
