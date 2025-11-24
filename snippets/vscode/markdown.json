@@ -1,0 +1,156 @@
+{
+  "TheoremEnv shortcode": {
+    "prefix": "theorem",
+    "body": [
+      "{% theorem(class=\"${1:class}\") %}",
+      "${2:theorem content here.}",
+      "{% end %}"
+    ],
+    "description": "Zola theorem shortcode block"
+  },
+  "Proof shortcode": {
+    "prefix": "proof",
+    "body": [
+      "{% proof() %}",
+      "${1:Proof content here.}",
+      "{% end %}"
+    ],
+    "description": "Zola proof shortcode block"
+  },
+  "TikZCD Diagram": {
+    "prefix": "tikzcd",
+    "body": [
+      "<center>",
+      "<script type='text/tikz'>",
+      "${1:tikzcd code}",
+      "</script>",
+      "</center>"
+    ],
+    "description": "TikZ commutative diagram block"
+  },
+  "Theorem shortcode": {
+    "prefix": "thm",
+    "body": [
+      "{% theorem(class=\"theorem\") %}",
+      "${1:theorem content here.}",
+      "{% end %}"
+    ],
+    "description": "theorem shortcode block"
+  },
+  "Lemma shortcode": {
+    "prefix": "lem",
+    "body": [
+      "{% theorem(class=\"lemma\") %}",
+      "${1:lemma content here.}",
+      "{% end %}"
+    ],
+    "description": "Lemma shortcode block"
+  },
+  "Corollary shortcode": {
+    "prefix": "cor",
+    "body": [
+      "{% theorem(class=\"corollary\") %}",
+      "${1:coroallary content here.}",
+      "{% end %}"
+    ],
+    "description": "theorem shortcode block"
+  },
+  "Proposition shortcode": {
+    "prefix": "prop",
+    "body": [
+      "{% theorem(class=\"proposition\") %}",
+      "${1:proposition content here.}",
+      "{% end %}"
+    ],
+    "description": "theorem shortcode block"
+  },
+  "Definition shortcode": {
+    "prefix": "def",
+    "body": [
+      "{% theorem(class=\"definition\") %}",
+      "${1:theorem content here.}",
+      "{% end %}"
+    ],
+    "description": "theorem shortcode block"
+  },
+  "Example shortcode": {
+    "prefix": "eg",
+    "body": [
+      "{% theorem(class=\"example\") %}",
+      "${1:theorem content here.}",
+      "{% end %}"
+    ],
+    "description": "theorem shortcode block"
+  },
+  "Remark shortcode": {
+    "prefix": "rem",
+    "body": [
+      "{% theorem(class=\"remark\") %}",
+      "${1:theorem content here.}",
+      "{% end %}"
+    ],
+    "description": "theorem shortcode block"
+  },
+  "Note shortcode": {
+    "prefix": "note",
+    "body": [
+      "{% theorem(class=\"note\") %}",
+      "${1:theorem content here.}",
+      "{% end %}"
+    ],
+    "description": "theorem shortcode block"
+  },
+  "mathbb": {
+    "prefix": "bbb",
+    "body": [
+      "\\mathbb{${1:A}}"
+    ],
+    "description": "mathbb"
+  },
+  "mathrm": {
+    "prefix": "rrr",
+    "body": [
+      "\\mathrm{${1:A}}"
+    ],
+    "description": "mathrm"
+  },
+  "mathscr": {
+    "prefix": "sss",
+    "body": [
+      "\\mathscr{${1:A}}"
+    ],
+    "description": "mathscr"
+  },
+  "mathfrak": {
+    "prefix": "fff",
+    "body": [
+      "\\mathfrak{${1:A}}"
+    ],
+    "description": "mathfrak"
+  },
+  "operator": {
+    "prefix": "ooo",
+    "body": [
+      "\\operatorname{${1:A}}"
+    ],
+    "description": "operatorname"
+  },
+  "cases": {
+    "prefix": "cases",
+    "body": [
+      "\\begin{cases}",
+      "${1:text 1} & \\text{${2:condition 1}} \\\\",
+      "${3:text 2} & \\text{${4:condition 2}} \\\\",
+      "${5:text 3} & \\text{${6:condition 3}} \\\\",
+      "\\end{cases}"
+    ],
+    "description": "cases"
+  },
+  "image": {
+	"prefix": "image",
+	"body": [
+		"<center>\n{{ img(path=\"$1\", alt=\"$2\", width=\"400\" height=\"300\") }}\n</center>"
+	],
+	"description": "image"
+}
+}
