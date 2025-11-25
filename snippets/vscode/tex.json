@@ -1,0 +1,53 @@
+{
+"mathbb": {
+    "prefix": "bbb",
+    "body": [
+      "\\mathbb{${1:A}}"
+    ],
+    "description": "mathbb"
+  },
+  "mathrm": {
+    "prefix": "rrr",
+    "body": [
+      "\\mathrm{${1:A}}"
+    ],
+    "description": "mathrm"
+  },
+  "mathscr": {
+    "prefix": "sss",
+    "body": [
+      "\\mathscr{${1:A}}"
+    ],
+    "description": "mathscr"
+  },
+  "mathfrak": {
+    "prefix": "fff",
+    "body": [
+      "\\mathfrak{${1:A}}"
+    ],
+    "description": "mathfrak"
+  },
+  "operator": {
+    "prefix": "ooo",
+    "body": [
+      "\\operatorname{${1:A}}"
+    ],
+    "description": "operatorname"
+  },
+  "text": {
+	"prefix": "tt",
+	"body": [
+		"\\text{${1:A}}"
+	],
+	"description": "text"
+  },
+  "Generic Environment": {
+    "prefix": "env",
+    "body": [
+      "\\begin{${1:equation}}",
+      "\t$0",
+      "\\end{${1:equation}}"
+    ],
+    "description": "Creates a LaTeX environment"
+  }
+}
