@@ -219,8 +219,18 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 vim.keymap.set('n', '<leader>tv', ':Vista!!<CR>')
 
 -- NOTE: Cpp keymaps
--- F6: Save, Build, AND Run immediately
-vim.keymap.set('n', '<F6>', ':w <bar> !cmake --build build && ./build/main<CR>', { desc = 'Build and Run' })
+
+-- F6: Save, Build, AND Run immediately. This version does not interact with cin.
+-- vim.keymap.set('n', '<F6>', ':w <bar> !cmake --build build && ./build/main<CR>', { desc = 'Build and Run' })
+
+-- F6: Save, Build, and Run in an Interactive Terminal (Fixes cin/input issues).
+vim.keymap.set('n', '<F6>', function()
+  vim.cmd 'w' -- Save file
+  -- Open a terminal split at the bottom (height 15) running the build & execute command
+  vim.cmd 'botright 15split | term cmake --build build && ./build/main'
+  -- Auto-enter "Insert Mode" so you can type immediately
+  vim.cmd 'startinsert'
+end, { desc = 'Build and Run Interactive' })
 
 -- NOTE: LATEX setups
 
