@@ -20,11 +20,11 @@
   "TikZCD Diagram": {
     "prefix": "tikzcd",
     "body": [
-      "<center>",
-      "<script type='text/tikz'>",
-      "${1:tikzcd code}",
-      "</script>",
-      "</center>"
+	 "<center><script type=\"text/tikz\"> \\usepackage{tikz-cd,amssymb} \\begin{document} \\Large",
+         "\\begin{tikzcd}", 
+	 "{$1:diagram}",
+         "\\end{tikzcd}",
+	 "\\end{document} </script> </center>"
     ],
     "description": "TikZ commutative diagram block"
   },
