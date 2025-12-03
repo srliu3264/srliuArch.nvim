@@ -1272,6 +1272,39 @@ vim.keymap.set('n', '<localleader>td', function()
     print 'Diagnostics: OFF'
   end
 end, { desc = '[T]oggle [D]iagnostic text' })
+
+-- =========================================================
+-- NOTE: CUSTOM C++ DEBUGGER CONFIG (Added manually)
+-- =========================================================
+--
+-- This forces the debugger to always use build/main
+-- properly wrapped to prevent errors if DAP isn't loaded yet.
+--
+local function setup_cpp_debug()
+  local dap_status, dap = pcall(require, 'dap')
+  if not dap_status then
+    return
+  end
+
+  dap.configurations.cpp = {
+    {
+      name = 'Debug Build/Main',
+      type = 'codelldb',
+      request = 'launch',
+      program = function()
+        return vim.fn.getcwd() .. '/build/main'
+      end,
+      cwd = '${workspaceFolder}',
+      stopOnEntry = false,
+    },
+  }
+
+  -- Apply same config to C files
+  dap.configurations.c = dap.configurations.cpp
+end
+
+-- Run this setup
+setup_cpp_debug()
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
 --
