@@ -51,6 +51,10 @@ Neovim's configurations are located under the following paths, depending on your
 | Windows (cmd)| `%localappdata%\nvim\` |
 | Windows (powershell)| `$env:LOCALAPPDATA\nvim\` |
 
+### Virtual enviroment for molten
+mkevn nvim (create a new virtual enviroment in ~/.virtualenvs)
+venv nvim (activate it)
+pip install pynvim jupyter_client cairosvg plotly kaleido pnglatex pyperclip
 #### Recommended Step
 
 [Fork](https://docs.github.com/en/get-started/quickstart/fork-a-repo) this repo
