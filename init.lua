@@ -914,6 +914,7 @@ require('lazy').setup({
             },
           },
         },
+        sqls = {},
       }
 
       -- Ensure the servers and tools above are installed
@@ -934,6 +935,8 @@ require('lazy').setup({
         'stylua', -- Used to format Lua code
         'pylsp', -- for python
         'texlab',
+        'sqls',
+        'sql-formatter',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -987,7 +990,8 @@ require('lazy').setup({
       formatters_by_ft = {
         lua = { 'stylua' },
         -- Conform can also run multiple formatters sequentially
-        -- python = { "isort", "black" },
+        python = { 'isort', 'black' },
+        sql = { 'sql_formatter' },
         --
         -- You can use 'stop_after_first' to run the first available formatter from the list
         -- javascript = { "prettierd", "prettier", stop_after_first = true },
@@ -1031,6 +1035,7 @@ require('lazy').setup({
         opts = {},
       },
       'folke/lazydev.nvim',
+      'saghen/blink.compat',
     },
     --- @module 'blink.cmp'
     --- @type blink.cmp.Config
@@ -1076,9 +1081,14 @@ require('lazy').setup({
       },
 
       sources = {
-        default = { 'lsp', 'path', 'snippets', 'lazydev' },
+        default = { 'lsp', 'path', 'snippets', 'lazydev', 'dadbod' },
         providers = {
           lazydev = { module = 'lazydev.integrations.blink', score_offset = 100 },
+          dadbod = {
+            name = 'Dadbod',
+            module = 'blink.compat.source',
+            score_offset = 3, -- Boost SQL completions slightly
+          },
         },
       },
 
