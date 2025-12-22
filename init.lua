@@ -94,9 +94,13 @@ P.S. You can delete this when you're done too. It's your config now! :)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+-- [[ ARCH LINUX FIX ]]
+-- Force dadbod to use 'mariadb' command to avoid "deprecated" warnings
+vim.g.db_adapter_mysql_cmd = '/usr/bin/mariadb'
+
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.vimtex_view_method = 'zathura'
-vim.g.have_nerd_font = false
+vim.g.have_nerd_font = true
 
 -- [[ Setting options ]]
 -- See `:help vim.o`
@@ -936,7 +940,8 @@ require('lazy').setup({
         'pylsp', -- for python
         'texlab',
         'sqls',
-        'sleek',
+        'black',
+        'isort',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -977,7 +982,7 @@ require('lazy').setup({
         -- Disable "format_on_save lsp_fallback" for languages that don't
         -- have a well standardized coding style. You can add additional
         -- languages here or re-enable it for the disabled ones.
-        local disable_filetypes = { c = true, cpp = true }
+        local disable_filetypes = { c = true, cpp = true, sql = true, mysql = true }
         if disable_filetypes[vim.bo[bufnr].filetype] then
           return nil
         else
@@ -991,7 +996,6 @@ require('lazy').setup({
         lua = { 'stylua' },
         -- Conform can also run multiple formatters sequentially
         python = { 'isort', 'black' },
-        sql = { 'sleek' },
         --
         -- You can use 'stop_after_first' to run the first available formatter from the list
         -- javascript = { "prettierd", "prettier", stop_after_first = true },
