@@ -936,7 +936,7 @@ require('lazy').setup({
         'pylsp', -- for python
         'texlab',
         'sqls',
-        'sql-formatter',
+        'sleek',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -991,7 +991,7 @@ require('lazy').setup({
         lua = { 'stylua' },
         -- Conform can also run multiple formatters sequentially
         python = { 'isort', 'black' },
-        sql = { 'sql_formatter' },
+        sql = { 'sleek' },
         --
         -- You can use 'stop_after_first' to run the first available formatter from the list
         -- javascript = { "prettierd", "prettier", stop_after_first = true },
