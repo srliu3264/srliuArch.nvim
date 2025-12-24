@@ -177,11 +177,23 @@ vim.o.confirm = true
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
---NOTE: enable autosaver and persistent undo (by srliu)
+--
+--enable autosaver and persistent undo (by srliu)
 --
 require 'autosave'
 vim.opt.undofile = true
 vim.opt.undodir = os.getenv 'HOME' .. '/.config/nvim/undo'
+
+-- HYBRID VIEW SAVING (Manual Save, Auto Load)
+vim.opt.viewoptions = { 'folds', 'cursor' }
+-- keymap for munual save
+vim.keymap.set('n', '<leader>sv', ':mkview<CR>', { desc = 'Save View (Folds & Cursor)' })
+--auto load
+vim.api.nvim_create_autocmd({ 'BufWinEnter' }, {
+  pattern = '?*',
+  group = vim.api.nvim_create_augroup('AutoLoadView', { clear = true }),
+  command = 'silent! loadview',
+})
 
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
