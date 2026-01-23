@@ -87,6 +87,8 @@ I hope you enjoy your Neovim journey,
 
 P.S. You can delete this when you're done too. It's your config now! :)
 --]]
+--add path for lean
+vim.env.PATH = vim.env.HOME .. '/.elan/bin:' .. vim.env.PATH
 
 -- Set <space> as the leader key
 -- See `:help mapleader`
