@@ -8,17 +8,17 @@ return {
     -- 'hrsh7th/nvim-cmp',
   },
   opts = {
-    lsp = {
-      on_attach = function(client, bufnr)
-        local function buf_set_keymap(...)
-          vim.api.nvim_buf_set_keymap(bufnr, ...)
-        end
-        local opts = { noremap = true, silent = true }
-
-        -- Leader+i to toggle the "Infoview" (the proof state window)
-        vim.keymap.set('n', '<leader>i', ':LeanInfoviewToggle<CR>', { buffer = bufnr, desc = 'Toggle Lean Infoview' })
-      end,
-    },
+    -- lsp = {
+    --   on_attach = function(client, bufnr)
+    --     local function buf_set_keymap(...)
+    --       vim.api.nvim_buf_set_keymap(bufnr, ...)
+    --     end
+    --     local opts = { noremap = true, silent = true }
+    --
+    --     -- Leader+i to toggle the "Infoview" (the proof state window)
+    --     vim.keymap.set('n', '<leader>i', ':LeanInfoviewToggle<CR>', { buffer = bufnr, desc = 'Toggle Lean Infoview' })
+    --   end,
+    -- },
     mappings = true,
     infoview = {
       autoopen = true,
