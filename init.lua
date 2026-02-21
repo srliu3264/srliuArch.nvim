@@ -892,7 +892,16 @@ require('lazy').setup({
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
-        clangd = {},
+        clangd = {
+          cmd = {
+            'clangd',
+            '--background-index',
+            '--clang-tidy',
+            '--completion-style=detailed',
+            '--function-arg-placeholders',
+            '--fallback-style=llvm',
+          },
+        },
         -- gopls = {},
         -- pyright = {},
         -- rust_analyzer = {},
@@ -919,15 +928,14 @@ require('lazy').setup({
             },
           },
         },
-        pylsp = {
+        pyright = {
           settings = {
-            pylsp = {
-              plugins = {
-                pyflakes = { enabled = true },
-                pycodestyle = { enabled = false }, -- avoid spam
-                mccabe = { enabled = false },
-                rope_autoimport = { enabled = true },
-                jedi_completion = { enabled = true },
+            python = {
+              analysis = {
+                typeCheckingMode = 'basic',
+                autoSearchPaths = true,
+                useLibraryCodeForTypes = true,
+                diagnosticMode = 'openFilesOnly',
               },
             },
           },
@@ -951,7 +959,7 @@ require('lazy').setup({
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
-        'pylsp', -- for python
+        'pyright', -- for python LSP
         'texlab',
         'sqls',
         'black',

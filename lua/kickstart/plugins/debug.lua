@@ -23,6 +23,9 @@ return {
 
     -- Add your own debuggers here
     'leoluz/nvim-dap-go',
+
+    -- Python debugger integration
+    'mfussenegger/nvim-dap-python',
   },
   keys = {
     -- Basic debugging keymaps, feel free to change to your liking!
@@ -95,6 +98,8 @@ return {
       ensure_installed = {
         -- Update this to ensure that you have the debuggers for the langs you want
         'delve',
+        'codelldb', -- C/C++ debugger
+        'debugpy',  -- Python debugger
       },
     }
 
@@ -144,5 +149,8 @@ return {
         detached = vim.fn.has 'win32' == 0,
       },
     }
+
+    -- Python debugging: use the nvim virtualenv Python (has debugpy installed by mason)
+    require('dap-python').setup(vim.fn.expand '~/.local/share/nvim/mason/packages/debugpy/venv/bin/python')
   end,
 }
