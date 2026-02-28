@@ -98,7 +98,6 @@ vim.g.maplocalleader = ' '
 
 -- [[ ARCH LINUX FIX ]]
 -- Force dadbod to use 'mariadb' command to avoid "deprecated" warnings
-vim.g.db_adapter_mysql_cmd = '/usr/bin/mariadb'
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.vimtex_view_method = 'zathura'
@@ -940,7 +939,6 @@ require('lazy').setup({
             },
           },
         },
-        sqls = {},
       }
 
       -- Ensure the servers and tools above are installed
@@ -961,7 +959,6 @@ require('lazy').setup({
         'stylua', -- Used to format Lua code
         'pyright', -- for python LSP
         'texlab',
-        'sqls',
         'black',
         'isort',
       })
@@ -1004,7 +1001,7 @@ require('lazy').setup({
         -- Disable "format_on_save lsp_fallback" for languages that don't
         -- have a well standardized coding style. You can add additional
         -- languages here or re-enable it for the disabled ones.
-        local disable_filetypes = { c = true, cpp = true, sql = true, mysql = true }
+        local disable_filetypes = { c = true, cpp = true }
         if disable_filetypes[vim.bo[bufnr].filetype] then
           return nil
         else
