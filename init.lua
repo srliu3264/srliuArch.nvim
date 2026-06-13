@@ -1,3 +1,4 @@
+-- TODO: I should implement new theme color change
 -- WARN: MUST have a python virtual enviroment at ~/.virtualenvs/nvim
 -- TODO: config https://github.com/yetone/avante.nvim for AI IDE (copilot)
 --
@@ -839,9 +840,9 @@ require('lazy').setup({
           --
           -- This may be unwanted, since they displace some of your code
           if client and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_inlayHint, event.buf) then
-            map('<leader>th', function()
+            map('<leader>ti', function()
               vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
-            end, '[T]oggle Inlay [H]ints')
+            end, '[T]oggle [I]nlay Hints')
           end
         end,
       })
@@ -940,7 +941,6 @@ require('lazy').setup({
             },
           },
         },
-        sqls = {},
       }
 
       -- Ensure the servers and tools above are installed
@@ -961,7 +961,6 @@ require('lazy').setup({
         'stylua', -- Used to format Lua code
         'pyright', -- for python LSP
         'texlab',
-        'sqls',
         'black',
         'isort',
       })
